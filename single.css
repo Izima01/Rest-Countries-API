@@ -120,7 +120,7 @@ main .border-countries {
 }
 
 @media (max-width: 850px) {
-    main, header>div {
+    header>div {
         width: 85%;
         margin: 0 auto;
     }
@@ -129,10 +129,10 @@ main .border-countries {
     }
     main {
         flex-direction: column;
-        row-gap: 100px;
-        margin: 0 auto;
+        row-gap: 80px;
+        margin: 40px auto 0;
+        width: 85%;
     }
-
     main .flag {
         width: 100%;
         height: auto;
@@ -145,12 +145,11 @@ main .border-countries {
 
 @media (max-width: 540px) {
     main {
-        width: 90%;
-        row-gap: 80px;
+        row-gap: 60px;
     }
     main .details {
         flex-direction: column;
-        row-gap: 50px;
+        row-gap: 40px;
     }
     main .border-countries {
         row-gap: 24px;
