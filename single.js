@@ -1,5 +1,4 @@
 let countryName = localStorage.getItem('countryName');
-// console.log(countryName);
 let countryInfo;
 
 const getSingleData = (name) => {
@@ -11,10 +10,35 @@ const getSingleData = (name) => {
         renderDetails();
     });
 };
-// getSingleData(countryName);
 
 document.addEventListener('DOMContentLoaded', getSingleData(countryName));
 // getSingleData();
+
+const templateBtn = document.getElementById("sampleBtn").content;
+
+const getBorderInfo = (array) => {
+    document.querySelector(".border-countries div").innerHTML = "";
+    array?.forEach(country => {
+        let singleUrl = `https://restcountries.com/v3.1/alpha/${country}`;
+        fetch(singleUrl)
+        .then(response => response.json())
+        .then(data => {
+            let templateCopy = document.importNode(templateBtn, true);
+            console.log(data[0].name.common);
+            templateCopy.querySelector(".border").textContent = data[0].name.common;
+            document.querySelector(".border-countries div").appendChild(templateCopy);
+        });
+    });
+};
+
+document.querySelector(".border-countries div").addEventListener('click', (event)=> {
+    if (event.target.className === "border") {
+        console.log("Thats a border");
+        // console.log(event.target.innerHTML);
+        getSingleData(event.target.innerHTML);
+    }
+});
+
 
 let flag = document.querySelector("#flagImg");
 let fullName = document.querySelector(".fullName");
@@ -39,25 +63,11 @@ const renderDetails = () => {
     domain.innerHTML = countryInfo.tld[0];
     currencies.innerHTML = countryInfo.currencies ? Object.keys(countryInfo.currencies)[0] : "";
     let languages = countryInfo.languages ? Object.values(countryInfo.languages): "";
-    console.log(languages);
+    // console.log(languages);
     let langList = languages && languages.join(", ");
-    console.log(langList);
+    // console.log(langList);
     lang.innerHTML = langList;
     let borderArray = countryInfo?.borders;
     console.log(borderArray);
-    renderBorder(borderArray);
-}
-
-const templateBtn = document.getElementById("sampleBtn").content;
-const renderBorder = (array) => {
-    document.querySelector(".border-countries div").innerHTML = "";
-    console.log(array);
-    array?.forEach(country => {
-        let templateCopy = document.importNode(templateBtn, true);
-        console.log(country);
-        templateCopy.innerHTML = country;
-        templateCopy.value = country;
-        console.log(templateCopy);
-        // document.querySelector(".border-countries div").appendChild(templateCopy);
-    });
+    getBorderInfo(borderArray);
 }
