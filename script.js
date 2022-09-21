@@ -1,6 +1,11 @@
 const url = "https://restcountries.com/v3.1/all";
 let template = document.getElementById("sample").content;
 const searchBar = document.querySelector(".searchBar");
+// let selectedCountry;
+let countrySection = document.querySelector(".countries");
+let countryNames = countrySection.getElementsByClassName("name");
+let regions = countrySection.getElementsByClassName("region");
+const detailsContainer = document.querySelector("#details-container");
 
 let countryData = [];
 const getCountries = () => {
@@ -16,8 +21,7 @@ const getCountries = () => {
         renderCountries();
     });
 };
-
-getCountries();
+document.addEventListener('DOMContentLoaded', getCountries());
 
 const renderCountries = () => {
     document.querySelector(".countries").innerHTML = "";
@@ -32,20 +36,14 @@ const renderCountries = () => {
             copy.querySelector(".capital").textContent = countries.capital[0];
         } else {
             copy.querySelector(".capital").textContent = countries.capital;
-        }
+        };
     document.querySelector(".countries").appendChild(copy);
     });
 };
 
-let countrySection = document.querySelector(".countries");
-let countryNames = countrySection.getElementsByClassName("name");
-let regions = countrySection.getElementsByClassName("region");
-// console.log(countryNames);
-
 const searchCountries = () => {
     const countryNamesArray = Array.from(countryNames);
     let searchValue = searchBar.value.toLowerCase();
-    // console.log(searchValue);
     countryNamesArray.forEach(name => {
         let nameString = name.innerHTML.toLowerCase();
         if (!nameString.includes(searchValue)) {
@@ -77,22 +75,103 @@ const searchRegion = () => {
 }
 // countrySection.parentElement
 countrySection.addEventListener('click', (event) => {
+    console.log(detailsContainer.classList);
     let target;
     if (event.target.tagName === "IMG") {
         target = event.target.nextElementSibling.firstElementChild.innerHTML;
+        window.scrollTo(0, 0);
+        detailsContainer.classList.add("slide-in");
     };
     if (event.target.className === "card-body") {
         target = event.target.firstElementChild.innerHTML;
+        window.scrollTo(0, 0);
+        detailsContainer.classList.add("slide-in");
     };
     if ((event.target.tagName === "H3") || (event.target.tagName === "P")) {
         target = event.target.parentElement.firstElementChild.innerHTML;
+        window.scrollTo(0, 0);
+        detailsContainer.classList.add("slide-in");
     };
-    console.log(target);
-    localStorage.setItem('countryName', target);
-    window.location.href = 'details.html';
+    // console.log(target);
+    getSingleData(target);
+});
+
+document.querySelector(".back").addEventListener('click', () => {
+    detailsContainer.classList.remove("slide-in");
+});
+
+// Details page script
+let countryInfo;
+const templateBtn = document.getElementById("sampleBtn").content;
+
+function getSingleData(name) {
+    let singleUrl = `https://restcountries.com/v3.1/name/${name}?fullText=true`;
+    fetch(singleUrl)
+    .then(response => response.json())
+    .then(data => {
+        countryInfo = data[0];
+        renderDetails();
+    });
+};
+
+const getBorderInfo = (array) => {
+    detailsContainer.querySelector(".border-countries div").innerHTML = "";
+    array?.forEach(country => {
+        let singleUrl = `https://restcountries.com/v3.1/alpha/${country}`;
+        fetch(singleUrl)
+        .then(response => response.json())
+        .then(data => {
+            let templateCopy = document.importNode(templateBtn, true);
+            console.log(data[0].name.common);
+            templateCopy.querySelector(".border").textContent = data[0].name.common;
+            detailsContainer.querySelector(".border-countries div").appendChild(templateCopy);
+        });
+    });
+};
+
+detailsContainer.querySelector(".border-countries div").addEventListener('click', (event)=> {
+    if (event.target.className === "border") {
+        console.log("Thats a border");
+        // console.log(event.target.innerHTML);
+        getSingleData(event.target.innerHTML);
+    }
 });
 
 
-// function openSingle() {
-//     console.log(this);
-// }
+let flag = detailsContainer.querySelector("#flagImg");
+let fullName = detailsContainer.querySelector(".fullName");
+let nativeName = detailsContainer.querySelector(".native-name");
+let population = detailsContainer.querySelector(".population");
+let region = detailsContainer.querySelector(".region");
+let subRegion = detailsContainer.querySelector(".sub-region");
+let capital = detailsContainer.querySelector(".capital");
+let domain = detailsContainer.querySelector(".domain");
+let currencies = detailsContainer.querySelector(".Currencies");
+let lang = detailsContainer.querySelector(".lang");
+
+const renderDetails = () => {
+    console.log(countryInfo);
+    flag.setAttribute("src", countryInfo?.flags?.png);
+    fullName.innerHTML = countryInfo?.name?.official || " ";
+    nativeName.innerHTML = countryInfo?.name?.nativeName?.eng?.official || countryInfo?.name?.official || " ";
+    population.innerHTML = countryInfo.population;
+    region.innerHTML = countryInfo.region || " ";
+    subRegion.innerHTML = countryInfo.subregion || " ";
+    capital.innerHTML = countryInfo.capital || " ";
+    domain.innerHTML = countryInfo.tld[0] || " ";
+    currencies.innerHTML = countryInfo.currencies ? Object.keys(countryInfo.currencies)[0] : " ";
+    let languages = countryInfo.languages ? Object.values(countryInfo.languages): " ";
+    // console.log(languages);
+    let langList = languages && languages.join(", ");
+    // console.log(langList);
+    lang.innerHTML = langList;
+    let borderArray = countryInfo?.borders;
+    console.log(borderArray);
+    if (!borderArray) {
+        console.log("no borders");
+        detailsContainer.querySelector(".border-countries div").innerHTML = "No borders"
+    } else {
+        getBorderInfo(borderArray)
+    }
+    // (!borderArray) ? detailsContainer.querySelector(".border-countries div").innerHTML = "No borders" : getBorderInfo(borderArray);
+}
