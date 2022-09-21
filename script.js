@@ -79,17 +79,17 @@ countrySection.addEventListener('click', (event) => {
     let target;
     if (event.target.tagName === "IMG") {
         target = event.target.nextElementSibling.firstElementChild.innerHTML;
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         detailsContainer.classList.add("slide-in");
     };
     if (event.target.className === "card-body") {
         target = event.target.firstElementChild.innerHTML;
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         detailsContainer.classList.add("slide-in");
     };
     if ((event.target.tagName === "H3") || (event.target.tagName === "P")) {
         target = event.target.parentElement.firstElementChild.innerHTML;
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         detailsContainer.classList.add("slide-in");
     };
     // console.log(target);
