@@ -92,22 +92,9 @@ const searchRegion = () => {
 countrySection.addEventListener('click', (event) => {
     console.log(detailsContainer.classList);
     let target;
-    if (event.target.tagName === "IMG") {
-        target = event.target.nextElementSibling.firstElementChild.innerHTML;
-        // window.scrollTo(0, 0);
-        detailsContainer.classList.add("slide-in");
-        countrySection.classList.add("d-none");
-    };
-    if (event.target.className === "card-body") {
-        target = event.target.firstElementChild.innerHTML;
-        // window.scrollTo(0, 0);
-        detailsContainer.classList.add("slide-in");
-        countrySection.classList.add("d-none");
-    };
-    if ((event.target.tagName === "H3") || (event.target.tagName === "P")) {
+    if ((event.target.tagName === "H3") || (event.target.tagName === "P") || (event.target.className === "card-body") || (event.target.tagName === "IMG")) {
         target = event.target.parentElement.firstElementChild.innerHTML;
-        // window.scrollTo(0, 0);
-        detailsContainer.classList.add("slide-in");
+        detailsContainer.classList.remove("d-none");
         countrySection.classList.add("d-none");
     };
     // console.log(target);
@@ -115,7 +102,7 @@ countrySection.addEventListener('click', (event) => {
 });
 
 document.querySelector(".back").addEventListener('click', () => {
-    detailsContainer.classList.remove("slide-in");
+    detailsContainer.classList.add("d-none");
     countrySection.classList.remove("d-none");
 });
 
