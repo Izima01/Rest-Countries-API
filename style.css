@@ -212,6 +212,7 @@ section .card {
     }
     main {
         width: 94%;
+        margin: 130px auto 0;
     }
     main section {
         column-gap: 6%;
@@ -254,10 +255,11 @@ section .card {
     width: 100%;
     min-height: 100vh;
     left: 0;
-    padding-top: 50px;
+    padding-top: 20px;
     background-color: var(--body-bg);
     transform: translateX(105%);
     transition: ease-in-out 1s all;
+    overflow-y: scroll;
 }
 
 #details-container p {
@@ -286,6 +288,7 @@ section .card {
     display: flex;
     column-gap: 8%;
     align-items: center;
+    overflow-y: scroll;
 }
 
 #details-page .flag {
