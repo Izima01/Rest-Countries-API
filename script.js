@@ -6,8 +6,22 @@ let countrySection = document.querySelector(".countries");
 let countryNames = countrySection.getElementsByClassName("name");
 let regions = countrySection.getElementsByClassName("region");
 const detailsContainer = document.querySelector("#details-container");
-
 let countryData = [];
+
+const themeButton = document.querySelector("header button");
+console.log(themeButton.firstElementChild);
+themeButton.addEventListener('click', ()=> {
+    console.log("Change theme");
+    document.body.classList.toggle("darkmode");
+    document.body.classList.toggle("lightmode");
+    if (document.body.classList.contains("darkmode")) {
+        themeButton.firstElementChild.classList.remove("bi-moon");
+        themeButton.firstElementChild.classList.add("bi-brightness-low");
+    } else {
+        themeButton.firstElementChild.classList.add("bi-moon");
+        themeButton.firstElementChild.classList.remove("bi-brightness-low");
+    }
+})
 const getCountries = () => {
     let countries = [];
     fetch(url)
