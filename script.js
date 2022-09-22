@@ -21,7 +21,8 @@ themeButton.addEventListener('click', ()=> {
         themeButton.firstElementChild.classList.add("bi-moon");
         themeButton.firstElementChild.classList.remove("bi-brightness-low");
     }
-})
+});
+
 const getCountries = () => {
     let countries = [];
     fetch(url)
@@ -95,16 +96,19 @@ countrySection.addEventListener('click', (event) => {
         target = event.target.nextElementSibling.firstElementChild.innerHTML;
         // window.scrollTo(0, 0);
         detailsContainer.classList.add("slide-in");
+        countrySection.classList.add("d-none");
     };
     if (event.target.className === "card-body") {
         target = event.target.firstElementChild.innerHTML;
         // window.scrollTo(0, 0);
         detailsContainer.classList.add("slide-in");
+        countrySection.classList.add("d-none");
     };
     if ((event.target.tagName === "H3") || (event.target.tagName === "P")) {
         target = event.target.parentElement.firstElementChild.innerHTML;
         // window.scrollTo(0, 0);
         detailsContainer.classList.add("slide-in");
+        countrySection.classList.add("d-none");
     };
     // console.log(target);
     getSingleData(target);
@@ -112,6 +116,7 @@ countrySection.addEventListener('click', (event) => {
 
 document.querySelector(".back").addEventListener('click', () => {
     detailsContainer.classList.remove("slide-in");
+    countrySection.classList.remove("d-none");
 });
 
 // Details page script
@@ -189,3 +194,7 @@ const renderDetails = () => {
     }
     // (!borderArray) ? detailsContainer.querySelector(".border-countries div").innerHTML = "No borders" : getBorderInfo(borderArray);
 }
+
+let x = 12908376;
+let numString = String(x).replace(/(.)(?=(\d{3})+$)/g, '$1,')
+console.log(x);

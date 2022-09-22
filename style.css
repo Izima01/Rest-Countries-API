@@ -36,10 +36,6 @@ body {
     overflow-y: scroll;
 }
 
-.noscroll {
-    overflow-y: hidden;
-}
-
 header {
     position: fixed;
     top: 0;
@@ -250,7 +246,7 @@ section .card {
 
 /* Details page styling */
 #details-container {
-    position: fixed;
+    position: absolute;
     top: 60px;
     width: 100%;
     min-height: 100vh;
@@ -260,6 +256,7 @@ section .card {
     transform: translateX(105%);
     transition: ease-in-out 1s all;
     overflow-y: scroll;
+    border: 2px solid rosybrown;
 }
 
 #details-container p {
