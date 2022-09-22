@@ -267,7 +267,6 @@ section .card {
     right: 0;
     background-color: var(--body-bg);
     transition: ease-in-out 1s all;
-    overflow-y: scroll;
 }
 
 #details-container p {
@@ -275,7 +274,7 @@ section .card {
 }
 
 .back {
-    margin: 0 5%;
+    margin: 30px 5% 15px;
     padding: 4px 25px;
     background-color: inherit;
     border: none;
@@ -287,12 +286,12 @@ section .card {
 }
 
 #details-page {
-    margin: 50px auto 80px;
+    margin: 20px auto 80px;
     width: 90%;
     display: flex;
     column-gap: 8%;
     align-items: center;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 #details-page .flag {
@@ -328,7 +327,7 @@ section .card {
 }
 
 #details-page .border-countries {
-    margin: 32px 0 0;
+    margin: 32px 0 20px;
     display: flex;
     align-items: center;
     column-gap: 32px;
@@ -373,7 +372,7 @@ section .card {
     #details-page {
         flex-direction: column;
         row-gap: 80px;
-        margin: 40px auto 80px;
+        margin: 40px auto 40px;
         width: 90%;
     }
 
@@ -391,7 +390,6 @@ section .card {
     #details-page {
         row-gap: 60px;
     }
-
     #details-page .details {
         flex-direction: column;
         row-gap: 40px;
