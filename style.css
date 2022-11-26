@@ -164,6 +164,19 @@ section .card {
     padding: 5px 0;
 }
 
+aside {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: rgba(240, 248, 255, 0.8);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (min-width: 1560px) {
     main section {
         column-gap: 2.5%;

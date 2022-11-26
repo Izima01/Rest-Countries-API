@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', getCountries());
 
 const renderCountries = () => {
     document.querySelector(".countries").innerHTML = "";
+    (countryData.length > 0) && document.querySelector('aside').classList.add("d-none");
     countryData.forEach(countries => {
         let copy = document.importNode(template, true);
         // copy.id = countries

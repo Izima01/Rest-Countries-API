@@ -54,6 +54,7 @@ let lang = document.querySelector(".lang");
 
 const renderDetails = () => {
     console.log(countryInfo);
+    countryInfo && document.querySelector('aside').classList.add("d-none");
     flag.setAttribute("src", countryInfo?.flags?.png);
     fullName.innerHTML = countryInfo?.name?.official || " ";
     nativeName.innerHTML = countryInfo?.name?.nativeName?.eng?.official || countryInfo?.name?.official || " ";
