@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Details Page</title>
+</head>
+<body class="lightmode">
+    <header>
+        <div>
+            <h1>Where in the world?</h1>
+            <button>
+                <i class="bi bi-moon"></i>
+                Dark Mode
+            </button>
+        </div>
+    </header>
+    <section id="details-container" class="">
+        <a href="index.html" class="back">Back</a>
+        <section id="details-page">
+            <div class="flag"><img src="" id="flagImg" alt=""></div>
+            <div>
+                <h1 class="fullName"></h1>
+                <div class="details">
+                    <div class="left">
+                        <p>Native Name: <span class="native-name"></span></p>
+                        <p>Population: <span class="population"></span></p>
+                        <p>Region: <span class="region"></span></p>
+                        <p>Sub Region: <span class="sub-region"></span></p>
+                        <p>Capital: <span class="capital"></span></p>
+                    </div>
+                    <div class="right">
+                        <p>Top Level Domain: <span class="domain"></span></p>
+                        <p>Currencies: <span class="Currencies"></span></p>
+                        <p>Languages: <span class="lang"></span></p>
+                    </div>
+                </div>
+                <div class="border-countries">
+                    <h4>Border Countries: </h4>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <template id="sampleBtn">
+        <button class="border"></button>
+    </template>
+    <template id="sample">
+        <article class="card">
+            <img class="flag" src="" alt="">
+            <div class="card-body">
+                <h3 class="name"></h3>
+                <p>Population: <span class="population"></span></p>
+                <p>Region: <span class="region"></span></p>
+                <p>Capital: <span class="capital"></span></p>
+            </div>
+        </article>
+    </template>
+    <!-- <script src="script.js"></script> -->
+    <script src="details.js"></script>
+</body>
+</html>

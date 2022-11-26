@@ -34,7 +34,6 @@ p {
 body {
     background-color: var(--body-bg);
     overflow-x: hidden;
-    overflow-y: scroll;
     max-width: 100%;
 }
 
@@ -259,14 +258,8 @@ section .card {
 
 /* Details page styling */
 #details-container {
-    position: absolute;
-    top: 60px;
-    width: 100%;
-    min-height: 100vh;
-    left: 0;
-    right: 0;
-    background-color: var(--body-bg);
-    transition: ease-in-out 1s all;
+    margin: 100px auto 0;
+    width: 90%;
 }
 
 #details-container p {
@@ -404,11 +397,5 @@ section .card {
 
     .border-countries div {
         column-gap: 28px;
-    }
-}
-
-@media (max-width: 435px) {
-    #details-container {
-        top: 90px;
     }
 }
